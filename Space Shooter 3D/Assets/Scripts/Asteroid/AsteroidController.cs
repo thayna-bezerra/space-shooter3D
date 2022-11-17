@@ -20,10 +20,9 @@ public class AsteroidController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
 
-        randomRotation = new Vector3(Random.Range(0f, 100f), Random.Range(0f, 100f), Random.Range(0f, 100f));
-        removeAsteroidZ = Camera.main.transform.position.z;
+        randomRotation = new Vector3(Random.Range(0f, 100f), Random.Range(0f, 100f), Random.Range(0f, 100f)); //Valor para asteroide rodar aleatoriamente
+        removeAsteroidZ = Camera.main.transform.position.z; //pegando o valor da posição Z
 
-        //renderers = GetComponents<Renderer>();
         renderers = GetComponentsInChildren<Renderer>();
         baseMaterial = renderers[0].material;
     }

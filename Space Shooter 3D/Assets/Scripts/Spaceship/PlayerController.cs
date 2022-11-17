@@ -6,7 +6,6 @@ public class PlayerController : MonoBehaviour
 {
     public Animator CamAnimation;
 
-    public Joystick joystick;
     public float moveSpeed = 10f;
     public float maxRotation = 25f;
 
@@ -20,7 +19,6 @@ public class PlayerController : MonoBehaviour
 
     public Transform[] missleSpawnPoints;
     public GameObject bulletPrefab;
-    //public Transform spawnPoint1, spawnPoint2;
 
     public float fireInterval = 2f;
     private bool canFire = true;
@@ -176,20 +174,19 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayer()
     {
-        float horizontalMove = joystick.Horizontal;
-        float verticalMove = joystick.Vertical;
+        float horizontalMove = Input.GetAxis("Horizontal");
+        float verticalMove = Input.GetAxis("Vertical");
 
         Vector3 moveVector = new Vector3(horizontalMove, verticalMove, 0f);
 
         rb.velocity = moveVector * moveSpeed;
-
     }
 
     public void OnAsteroidImpact()
     {
         currentHealth--;
         
-        Handheld.Vibrate();
+        //Handheld.Vibrate();
 
         //animator
         CamAnimation.Play("CamVibrating");
@@ -210,7 +207,5 @@ public class PlayerController : MonoBehaviour
     public void OnPlayerDeath()
     {
         print("died");
-
-        //GameController.gameController.CheckScore();
     }
 }

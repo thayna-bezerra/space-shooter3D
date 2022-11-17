@@ -8,7 +8,6 @@ public class BulletController : MonoBehaviour
     private Rigidbody rb;
 
     public GameObject explosion;
-   // public int Score;
 
     void Start()
     {
@@ -26,7 +25,6 @@ public class BulletController : MonoBehaviour
     {
         if (collider.CompareTag("Asteroid"))
         {
-
             GameController.gameController.Adicionar();
 
             SoundController.sounds.explosion.Play();
@@ -38,5 +36,4 @@ public class BulletController : MonoBehaviour
             //instanciar particula de explosion
         }
     }
-    
 }

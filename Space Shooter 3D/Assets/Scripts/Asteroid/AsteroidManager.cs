@@ -5,12 +5,14 @@ using UnityEngine;
 public class AsteroidManager : MonoBehaviour
 {
     public static AsteroidManager Instance;
+
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
         }
+
         else Destroy(this);
     }
 
@@ -57,13 +59,13 @@ public class AsteroidManager : MonoBehaviour
         {
             if (targetAsteroids.Contains(asteroid))
             {
-                //red
+                //Chamando função do outro script para deixar asteroide vermelho
                 asteroid.GetComponent<AsteroidController>().SetTargetMaterial();
 
             }
             else
             {
-                //resetar
+                //resetar cor
                 asteroid.GetComponent<AsteroidController>().ResetMaterial();
             }
         }
