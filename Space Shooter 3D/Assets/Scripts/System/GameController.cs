@@ -63,6 +63,7 @@ public class GameController : MonoBehaviour
 
     public void Update()
     {
+        OnFireButtonClicked();
         scoreText.text = scoreCurrent.ToString();
         recordText.text = scoreRecord.ToString();
         //menu
@@ -103,8 +104,12 @@ public class GameController : MonoBehaviour
 
     public void OnFireButtonClicked()
     {
-        playerController.FireRockets();
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            playerController.FireRockets();
+        }
     }
+
 
     public void OnMenuBtnClicked()
     {
