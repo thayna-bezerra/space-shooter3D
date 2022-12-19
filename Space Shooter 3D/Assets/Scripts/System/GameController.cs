@@ -110,7 +110,6 @@ public class GameController : MonoBehaviour
         }
     }
 
-
     public void OnMenuBtnClicked()
     {
         Time.timeScale = 1f;

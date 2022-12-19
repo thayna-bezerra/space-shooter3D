@@ -21,33 +21,11 @@ public class AsteroidController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         randomRotation = new Vector3(Random.Range(0f, 100f), Random.Range(0f, 100f), Random.Range(0f, 100f)); //Valor para asteroide rodar aleatoriamente
+
         removeAsteroidZ = Camera.main.transform.position.z; //pegando o valor da posição Z
 
         renderers = GetComponentsInChildren<Renderer>();
         baseMaterial = renderers[0].material;
-    }
-
-    public void ResetMaterial()
-    {
-        if (renderers == null)
-            return;
-
-        foreach(Renderer rend in renderers)
-        {
-            rend.material = baseMaterial;
-        }
-    }
-
-    public void SetTargetMaterial()
-    {
-        if (renderers == null)
-            return;
-
-        foreach (Renderer rend in renderers)
-        {
-            rend.material = targetMaterial;
-        }
-
     }
 
     void Update()
@@ -64,6 +42,29 @@ public class AsteroidController : MonoBehaviour
         transform.Rotate(randomRotation * Time.deltaTime);
     }
 
+
+    public void ResetMaterial()
+    {
+        if (renderers == null)
+            return;
+
+        foreach(Renderer rend in renderers)
+        {
+            rend.material = baseMaterial;
+        }
+    }
+
+    public void SetTargetMaterial() //
+    {
+        if (renderers == null)
+            return;
+
+        foreach (Renderer rend in renderers)
+        {
+            rend.material = targetMaterial;
+        }
+
+    }
     public void DestroyAsteroid()
     {
         AsteroidManager.Instance.aliveAsteroids.Remove(gameObject);

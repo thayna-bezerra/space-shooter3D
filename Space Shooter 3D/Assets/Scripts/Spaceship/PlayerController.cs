@@ -33,10 +33,10 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        SetUpBoundries();
-
         currentHealth = maxHealth;
+
+        rb = GetComponent<Rigidbody>();
+        SetUpLimits();
 
         layerMask = LayerMask.GetMask("EnemyRaycast");
     }
@@ -44,17 +44,81 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         GameController.gameController.CheckScore();
+
         MovePlayer();
         RotatePlayer();
 
-        CalculateBoundries();
+        CalculateLimits();
 
         RaycastForAsteroids();
     }
 
+    private void MovePlayer()
+    {
+        float horizontalMove = Input.GetAxis("Horizontal");
+        float verticalMove = Input.GetAxis("Vertical");
+
+        Vector3 moveVector = new Vector3(horizontalMove, verticalMove, 0f);
+
+        rb.velocity = moveVector * moveSpeed;
+    }
+
+    private void RotatePlayer()
+    {
+        float currentPositionX = transform.position.x; //posição X atual (qual lado da tela a nave está)
+        float newRotationZ;
+
+        if(currentPositionX < 0)
+        {
+            newRotationZ = Mathf.Lerp(5f, -maxRotation, currentPositionX / minX);
+        }
+
+        else
+        {
+            newRotationZ = Mathf.Lerp(5f, maxRotation, currentPositionX / maxX);
+        }
+
+        Vector3 currentRotationVector3 = new Vector3(0f, 0f, newRotationZ);
+        Quaternion newRotation = Quaternion.Euler(currentRotationVector3);
+        transform.localRotation = newRotation;
+    } //Rotacionar nave quando esta for para o canto da tela
+
+    private void CalculateLimits() //Calculando Limite da tela 
+    {
+        Vector3 currentPos = transform.position;
+
+        currentPos.x = Mathf.Clamp(currentPos.x, minX, maxX);
+        currentPos.y = Mathf.Clamp(currentPos.y, minY, maxY);
+
+        transform.position = currentPos;
+    }
+
+    private void SetUpLimits() //Nave não sair da tela
+    {
+        float camDistance = Vector3.Distance(transform.position, Camera.main.transform.position);
+        Vector2 bottonCorners = Camera.main.ViewportToWorldPoint(new Vector3(0f, 0f, camDistance)); //limites abaixo
+        Vector2 topCorners = Camera.main.ViewportToWorldPoint(new Vector3(1f, 1f, camDistance)); //limites acima
+
+        Bounds gameObjectBouds = GetComponent<Collider>().bounds; //LIMITES
+        float objectWidht = gameObjectBouds.size.x;
+
+        minX = bottonCorners.x + objectWidht;
+        maxX = topCorners.x - objectWidht;
+
+        maxY = bottonCorners.y + objectWidht;
+        maxY = topCorners.y - objectWidht;
+
+        //chama asteroide
+        AsteroidManager.Instance.maxX = maxX;
+        AsteroidManager.Instance.minX = minX;
+        AsteroidManager.Instance.maxY = maxY;
+        AsteroidManager.Instance.minY = minY;
+    }
+
+
     private void RaycastForAsteroids()
     {
-        List<GameObject> currentTargets = new List<GameObject>();
+        List<GameObject> currentTargets = new List<GameObject>(); //alvo atual
 
         foreach (Transform missleSpawnPoint in missleSpawnPoints)
         {
@@ -70,7 +134,7 @@ public class PlayerController : MonoBehaviour
 
         bool listsChanged = false;
 
-        //check if the previous and current targets are the same
+        //verifica se os alvos anteriores e atuais são os mesmos
         if (currentTargets.Count != previousTargets.Count)
         {
             listsChanged = true;
@@ -100,7 +164,6 @@ public class PlayerController : MonoBehaviour
         {
             foreach(Transform t in missleSpawnPoints)
             {
-
                 SoundController.sounds.shooter.Play();
                 Instantiate(bulletPrefab, t.position, Quaternion.identity);
             }
@@ -118,76 +181,10 @@ public class PlayerController : MonoBehaviour
         canFire = true;
     }
 
-    private void RotatePlayer()
-    {
-        float currentX = transform.position.x;
-        float newRotationZ;
-
-        if(currentX<0)
-        {
-            newRotationZ = Mathf.Lerp(5f, -maxRotation, currentX / minX);
-        }
-        else
-        {
-            newRotationZ = Mathf.Lerp(5f, maxRotation, currentX / maxX);
-        }
-
-        Vector3 currentRotationVector3 = new Vector3(0f, 0f, newRotationZ);
-        Quaternion newRotation = Quaternion.Euler(currentRotationVector3);
-        transform.localRotation = newRotation;
-
-    }
-
-    private void CalculateBoundries() //calculando espaço tela
-    {
-        Vector3 currentPos = transform.position;
-
-        currentPos.x = Mathf.Clamp(currentPos.x, minX, maxX);
-        currentPos.y = Mathf.Clamp(currentPos.y, minY, maxY);
-
-        transform.position = currentPos;
-    }
-
-    private void SetUpBoundries() //p n sair da tela
-    {
-        float camDistance = Vector3.Distance(transform.position, Camera.main.transform.position);
-        Vector2 bottonCorners = Camera.main.ViewportToWorldPoint(new Vector3(0f, 0f, camDistance));
-        Vector2 topCorners = Camera.main.ViewportToWorldPoint(new Vector3(1f, 1f, camDistance));
-
-        Bounds gameObjectBouds = GetComponent<Collider>().bounds;
-        float objectWidht = gameObjectBouds.size.x;
-        float objectHeight = gameObjectBouds.size.y;
-
-        minX = bottonCorners.x + objectWidht;
-        maxX = topCorners.x - objectWidht;
-
-        maxY = bottonCorners.y + objectWidht;
-        maxY = topCorners.y - objectWidht;
-
-        //chama asteroide
-        AsteroidManager.Instance.maxX = maxX;
-        AsteroidManager.Instance.minX = minX;
-        AsteroidManager.Instance.maxY = maxY;
-        AsteroidManager.Instance.minY = minY;
-
-    }
-
-    private void MovePlayer()
-    {
-        float horizontalMove = Input.GetAxis("Horizontal");
-        float verticalMove = Input.GetAxis("Vertical");
-
-        Vector3 moveVector = new Vector3(horizontalMove, verticalMove, 0f);
-
-        rb.velocity = moveVector * moveSpeed;
-    }
-
     public void OnAsteroidImpact()
     {
         currentHealth--;
         
-        //Handheld.Vibrate();
-
         //animator
         CamAnimation.Play("CamVibrating");
 
@@ -197,15 +194,5 @@ public class PlayerController : MonoBehaviour
 
         //mudando barra de vida
         gameController.ChangeHealthBar(maxHealth, currentHealth); //chamando metodo de outro script e definindo parametro
-
-        if(currentHealth == 0)
-        {
-            OnPlayerDeath();
-        }
-    }
-
-    public void OnPlayerDeath()
-    {
-        print("died");
     }
 }
