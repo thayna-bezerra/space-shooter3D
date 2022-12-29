@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17465183, g: 0.18217957, b: 0.21123627, a: 1}
+  m_IndirectSpecularColor: {r: 0.22847104, g: 0.23081988, b: 0.26781088, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 740, y: 360}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -664,9 +664,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 161908246}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81dfa80eda582ad46b8362da77f7ca6f, type: 3}
+  m_Script: {fileID: 11500000, guid: da6b7be6629a1fd4c8a39a9a3f14ca8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RotateSpeed: 1.2
 --- !u!45 &161908251
 Skybox:
   m_ObjectHideFlags: 0
@@ -2864,7 +2865,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 295.1, y: 34.200012}
+  m_AnchoredPosition: {x: 251, y: 34.200012}
   m_SizeDelta: {x: 842.03894, y: 107.22612}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1201793997
@@ -2899,7 +2900,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: developed by @Thayna_Bezerra
+  m_Text: developed by th.rummer
 --- !u!222 &1201793998
 CanvasRenderer:
   m_ObjectHideFlags: 0
