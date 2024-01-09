@@ -6,19 +6,19 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    //public Image healthBarFill;
-    //public float healthBarChangeTime = 0.5f;
+    public Image healthBarFill;
+    public float healthBarChangeTime = 0.5f;
 
-    //public GameObject pauseMenu;
-    //public GameObject deathMenu;
+    public GameObject pauseMenu;
+    public GameObject deathMenu;
 
     public PlayerController playerController;
 
-    //public int scoreCurrent;
-    //public int scoreRecord;
+    public int scoreCurrent;
+    public int scoreRecord;
 
-    //public Text scoreText;
-    //public Text recordText;
+    public Text scoreText;
+    public Text recordText;
 
     public Text scoreTextPanel;
     public Text recordTextPanel;
