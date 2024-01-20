@@ -68,4 +68,10 @@ public class InterstitialAdMob : MonoBehaviour
     {
         return this.interstitial != null && this.interstitial.CanShowAd();
     }
+
+    public void OnButtonClick()
+    {
+        RequestInterstitial(); // Carrega o anúncio intersticial quando o botão é clicado
+    }
+
 }
