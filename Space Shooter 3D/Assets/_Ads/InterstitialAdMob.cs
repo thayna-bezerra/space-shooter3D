@@ -14,7 +14,7 @@ public class InterstitialAdMob : MonoBehaviour
         MobileAds.Initialize(initStatus => { });
         RequestInterstitial();
 
-        if (this.interstitial.IsLoaded())
+        if (this.interstitial.CanShowAd())
         {
             this.interstitial.Show();
         }
@@ -28,13 +28,44 @@ public class InterstitialAdMob : MonoBehaviour
                 string adUnitId = "ca-app-pub-3940256099942544/4411468910";
         #else
                 string adUnitId = "unexpected_platform";
-        #endif
+#endif
 
+        string loadedAdUnitId = adUnitId;
         // Initialize an InterstitialAd.
-        this.interstitial = new InterstitialAd(adUnitId);
+        //this.interstitial = new InterstitialAd(adUnitId); //adicionar "adUnitId como parametro
+
         // Create an empty ad request.
-        AdRequest request = new AdRequest.Builder().Build();
+        AdRequest request = new AdRequest();
+
         // Load the interstitial with the request.
-        this.interstitial.LoadAd(request);
+        InterstitialAd.Load(adUnitId, request, (loadedAd, error) => { 
+            if (error != null)
+            {
+                Debug.LogError("Erro ao carregar o anúncio intersticial: ");
+            } 
+            else
+            {
+                // Acesse o ID do anúncio
+                //string loadedAdUnitId = AdUnitId;
+                Debug.Log("Anúncio intersticial carregado com sucesso. ID: " + loadedAdUnitId);
+
+                this.interstitial = loadedAd;
+                ShowInterstitial();
+            }
+        });
+
+    }
+
+    private void ShowInterstitial()
+    {
+        if (CanShowAd())
+        {
+            this.interstitial.Show();
+        }
+    }
+
+    private bool CanShowAd()
+    {
+        return this.interstitial != null && this.interstitial.CanShowAd();
     }
 }
