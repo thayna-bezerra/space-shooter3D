@@ -15,10 +15,10 @@ public class RewardedAdAdMob : MonoBehaviour
         MobileAds.Initialize(initStatus => { });
         RequestRewarded();
 
-        if (this.rewardedAd.IsLoaded())
+        /*if (this.rewardedAd.IsLoaded())
         {
             this.rewardedAd.Show();
-        }
+        }*/
     }
 
     public void RequestRewarded()
@@ -32,7 +32,7 @@ public class RewardedAdAdMob : MonoBehaviour
                     adUnitId = "unexpected_platform";
         #endif
 
-        this.rewardedAd = new RewardedAd(adUnitId);
+        /*this.rewardedAd = new RewardedAd(adUnitId);
 
         // Called when an ad request has successfully loaded.
         this.rewardedAd.OnAdLoaded += HandleRewardedAdLoaded;
@@ -50,7 +50,7 @@ public class RewardedAdAdMob : MonoBehaviour
         // Create an empty ad request.
         AdRequest request = new AdRequest.Builder().Build();
         // Load the rewarded ad with the request.
-        this.rewardedAd.LoadAd(request);
+        this.rewardedAd.LoadAd(request);*/
     }
 
     public void HandleRewardedAdLoaded(object sender, EventArgs args)
