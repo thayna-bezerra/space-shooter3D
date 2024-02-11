@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public Animator CamAnimation;
 
+    public Joystick joystick;
     public float moveSpeed = 10f;
     public float maxRotation = 25f;
 
@@ -33,10 +34,10 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        currentHealth = maxHealth;
-
         rb = GetComponent<Rigidbody>();
         SetUpLimits();
+
+        currentHealth = maxHealth;
 
         layerMask = LayerMask.GetMask("EnemyRaycast");
     }
@@ -55,8 +56,8 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayer()
     {
-        float horizontalMove = Input.GetAxis("Horizontal");
-        float verticalMove = Input.GetAxis("Vertical");
+        float horizontalMove = joystick.Horizontal; //Input.GetAxis("Horizontal");
+        float verticalMove = joystick.Vertical; //Input.GetAxis("Vertical");
 
         Vector3 moveVector = new Vector3(horizontalMove, verticalMove, 0f);
 

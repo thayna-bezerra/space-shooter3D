@@ -104,10 +104,8 @@ public class GameController : MonoBehaviour
 
     public void OnFireButtonClicked()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
+        //if (Input.GetKeyDown(KeyCode.Space)) for desktop
             playerController.FireRockets();
-        }
     }
 
     public void OnMenuBtnClicked()
