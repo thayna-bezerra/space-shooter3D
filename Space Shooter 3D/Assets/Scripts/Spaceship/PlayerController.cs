@@ -185,7 +185,9 @@ public class PlayerController : MonoBehaviour
     public void OnAsteroidImpact()
     {
         currentHealth--;
-        
+
+        Handheld.Vibrate();
+
         //animator
         CamAnimation.Play("CamVibrating");
 
