@@ -28,7 +28,7 @@ public class LaserControl : MonoBehaviour
 
         lightPosition = new Vector3(0, 0, finalWidth);
 
-        LineRenderer lineRenderer = gameObject.AddComponent<LineRenderer>(); //criado linha do laser
+        LineRenderer lineRenderer = gameObject.AddComponent<LineRenderer>(); //criando linha do laser
         lineRenderer.material = material;
 
         lineRenderer.startColor = laserColor;

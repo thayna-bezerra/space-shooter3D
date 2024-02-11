@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-    public float moveSpeed = 90f;
+    private float moveSpeed = 5500f;
     private Rigidbody rb;
 
     public GameObject explosion;
