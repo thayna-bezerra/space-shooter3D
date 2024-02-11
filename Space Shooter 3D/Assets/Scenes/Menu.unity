@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.21430486, g: 0.21811599, b: 0.2509751, a: 1}
+  m_IndirectSpecularColor: {r: 0.1392537, g: 0.14588639, b: 0.1704804, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -640,7 +640,7 @@ GameObject:
   - component: {fileID: 161908248}
   - component: {fileID: 161908247}
   - component: {fileID: 161908251}
-  - component: {fileID: 161908250}
+  - component: {fileID: 161908252}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -722,19 +722,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &161908250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 161908246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da6b7be6629a1fd4c8a39a9a3f14ca8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RotateSpeed: 1.2
 --- !u!45 &161908251
 Skybox:
   m_ObjectHideFlags: 0
@@ -744,6 +731,18 @@ Skybox:
   m_GameObject: {fileID: 161908246}
   m_Enabled: 1
   m_CustomSkybox: {fileID: 2100000, guid: 81f714daf7144784b8a2f42f1cd30927, type: 2}
+--- !u!114 &161908252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 161908246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81dfa80eda582ad46b8362da77f7ca6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &189355691
 GameObject:
   m_ObjectHideFlags: 0
@@ -1524,7 +1523,7 @@ RectTransform:
   m_Father: {fileID: 2036685776}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2797,7 +2796,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1029591631
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3169,7 +3168,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 144.8, y: 13}
+  m_AnchoredPosition: {x: 144.79999, y: 13}
   m_SizeDelta: {x: 842.03894, y: 107.22612}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1201793997
@@ -3968,8 +3967,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1354561442}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
