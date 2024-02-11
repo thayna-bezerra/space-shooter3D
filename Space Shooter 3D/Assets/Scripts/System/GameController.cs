@@ -63,7 +63,7 @@ public class GameController : MonoBehaviour
 
     public void Update()
     {
-        OnFireButtonClicked();
+        //OnFireButtonClicked();
         scoreText.text = scoreCurrent.ToString();
         recordText.text = scoreRecord.ToString();
         //menu
