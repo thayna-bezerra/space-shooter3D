@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     public Transform[] missleSpawnPoints;
     public GameObject bulletPrefab;
 
-    public float fireInterval = 2f;
+    public float fireInterval = 0.5f;
     private bool canFire = true;
 
     public GameObject fxDamage;
